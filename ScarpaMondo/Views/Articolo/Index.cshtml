@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ScarpaMondo.Models.Articolo>
+
+<h2>Elenco Articoli</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Prezzo</th>
+            <th>Descrizione</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prezzo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Descrizione)</td>
+                <td>
+                    <a class="btn btn-primary" href="@Url.Action("Edit", "Articolo", new { id = item.ArticoloId })">Modifica</a>
+                    <a class="btn btn-warning" href="@Url.Action("SoftDelete", "Articolo", new { id = item.ArticoloId })" onclick="return confirm('Sei sicuro di voler rimuovere questo articolo dalla vista?');">Rimuovi dalla Vista</a>
+                    <!-- Form per eliminazione definitiva -->
+                    <form asp-action="DeleteConfirmed" asp-route-id="@item.ArticoloId" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare definitivamente questo articolo?');">Elimina Definitivamente</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-success" href="@Url.Action("Create", "Articolo")">Crea Nuovo Articolo</a>

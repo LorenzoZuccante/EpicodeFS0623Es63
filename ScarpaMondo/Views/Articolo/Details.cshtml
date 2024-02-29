@@ -1,0 +1,48 @@
+﻿@model ScarpaMondo.Models.Articolo
+
+<h2>Dettagli Articolo</h2>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        @if (!string.IsNullOrEmpty(Model.ImmagineAggiuntiva1Url))
+        {
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        }
+        @if (!string.IsNullOrEmpty(Model.ImmagineAggiuntiva2Url))
+        {
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        }
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="@Model.ImmagineCopertinaUrl" class="d-block w-100" alt="Cover image">
+        </div>
+        @if (!string.IsNullOrEmpty(Model.ImmagineAggiuntiva1Url))
+        {
+            <div class="carousel-item">
+                <img src="@Model.ImmagineAggiuntiva1Url" class="d-block w-100" alt="Additional image 1">
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ImmagineAggiuntiva2Url))
+        {
+            <div class="carousel-item">
+                <img src="@Model.ImmagineAggiuntiva2Url" class="d-block w-100" alt="Additional image 2">
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="mt-4">
+    <h3>@Model.Nome</h3>
+    <p><strong>Prezzo:</strong> @String.Format("{0:C}", Model.Prezzo)</p>
+    <p><strong>Descrizione:</strong> @Model.Descrizione</p>
+</div>

@@ -146,12 +146,12 @@ namespace ScarpaMondo.Controllers
         }
 
         // POST: Articolo/Delete/5 for hard delete
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var articolo = await _context.Articoli.FindAsync(id);
-            if (articolo != null) // Controlla se l'articolo esiste
+            if (articolo != null)
             {
                 _context.Articoli.Remove(articolo);
                 await _context.SaveChangesAsync();
